@@ -3,7 +3,7 @@ package com.felix.loans.service;
 import com.felix.loans.dto.LoanRequestDTO;
 import com.felix.loans.dto.LoanResponseDTO;
 
-public interface iLoanService {
+public interface ILoanService {
 
   void createLoan(LoanRequestDTO loanRequestDTO);
 

@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af2b98c-3943-4507-be94-033fbcdff78c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/audit/AuditAwareImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/ResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/entity/Loan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/LoanAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/mapper/LoanMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/repository/LoanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/iLoanService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts" beforeDir="false" afterPath="$PROJECT_DIR$/accounts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/iAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/IAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/impl/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/LoansApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/LoansApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/mapper/LoanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/mapper/LoanMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/iLoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,5 +111,16 @@
       <updated>1741758024510</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

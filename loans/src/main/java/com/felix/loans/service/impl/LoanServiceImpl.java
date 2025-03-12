@@ -7,13 +7,13 @@ import com.felix.loans.exception.LoanAlreadyExistsException;
 import com.felix.loans.exception.ResourceNotFoundException;
 import com.felix.loans.mapper.LoanMapper;
 import com.felix.loans.repository.LoanRepository;
-import com.felix.loans.service.iLoanService;
+import com.felix.loans.service.ILoanService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class LoanServiceImpl implements iLoanService {
+public class LoanServiceImpl implements ILoanService {
 
   private LoanRepository loanRepository;
   private LoanMapper loanMapper;

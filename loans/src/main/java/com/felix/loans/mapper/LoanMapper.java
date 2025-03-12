@@ -2,7 +2,9 @@ package com.felix.loans.mapper;
 
 import com.felix.loans.dto.LoanResponseDTO;
 import com.felix.loans.entity.Loan;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoanMapper {
 
   /*
