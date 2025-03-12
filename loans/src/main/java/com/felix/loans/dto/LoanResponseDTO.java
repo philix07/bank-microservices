@@ -12,7 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Schema(
   name = "Loan Response Entity",
-  description = "Schema to handle fetching loan information, in this case this class got the same property as the Loan Request Entity, but in most case, they should be different, that's why we're separating the class."
+  description = "Schema to handle fetching loan information"
 )
 public class LoanResponseDTO {
 

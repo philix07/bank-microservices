@@ -1,4 +1,4 @@
-INSERT INTO `loan` (
+INSERT INTO `loans` (
   `loan_id`, `mobile_number`, `loan_number`, `loan_type`,
   `total_loan`, `amount_paid`, `outstanding_amount`,
   `created_at`, `created_by`, `updated_at`, `updated_by`

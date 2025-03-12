@@ -11,6 +11,8 @@ import com.felix.loans.service.ILoanService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+
 @Service
 @AllArgsConstructor
 public class LoanServiceImpl implements ILoanService {
@@ -20,12 +22,15 @@ public class LoanServiceImpl implements ILoanService {
 
   @Override
   public void createLoan(LoanRequestDTO loanRequestDTO) {
-    if (loanRepository.findByLoanNumber(loanRequestDTO.getLoanNumber()).isPresent()) {
-      throw new LoanAlreadyExistsException("Loan with number : " + loanRequestDTO.getLoanNumber() + " already exists");
-    }
+    // Generate a random 12-digit number
+    long randomAccNumber;
+    SecureRandom secureRandom = new SecureRandom();
+    do {
+      randomAccNumber = 100000000000L + (long) (secureRandom.nextDouble() * 900000000000L);
+    } while (loanRepository.findByLoanNumber(String.valueOf(randomAccNumber)).isPresent());
 
     Loan loan = new Loan();
-    loan.setLoanNumber(loanRequestDTO.getLoanNumber());
+    loan.setLoanNumber(String.valueOf(randomAccNumber));
     loan.setLoanType(loanRequestDTO.getLoanType());
     loan.setTotalLoan(loanRequestDTO.getTotalLoan());
     loan.setAmountPaid(loanRequestDTO.getAmountPaid());
