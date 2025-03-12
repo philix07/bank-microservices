@@ -5,16 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af2b98c-3943-4507-be94-033fbcdff78c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/AccountApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/audit/AuditAwareImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/dto/AccountRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/dto/AccountResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/dto/ResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/entity/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/exception/DuplicateCustomerIDException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/exception/DuplicatePhoneNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/exception/general/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/exception/general/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/mapper/AccountMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/service/IAccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/java/com/felix/accounts/service/impl/AccountServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/accounts/src/test/java/com/felix/accounts/AccountApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cards/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts" beforeDir="false" afterPath="$PROJECT_DIR$/accounts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/iAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/IAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/service/impl/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/mapper/LoanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/mapper/LoanMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/iLoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/accounts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cards/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +59,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/accounts" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -67,12 +92,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/philix07/bank-microservices",
-    "accountId": "9eac337f-c20c-47ed-993d-eefd604c6e15"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/philix07/bank-microservices&quot;,
+    &quot;accountId&quot;: &quot;9eac337f-c20c-47ed-993d-eefd604c6e15&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
@@ -93,10 +118,17 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "actions.on.save"
+    "last_opened_file_path": "D:/Coding/Spring/Udemy - Microservices/cards",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Coding\Spring\Udemy - Microservices\root-project" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.felix.loans.exception" />
     </key>
