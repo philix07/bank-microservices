@@ -1,0 +1,82 @@
+package com.felix.loans.service.impl;
+
+import com.felix.loans.dto.LoanRequestDTO;
+import com.felix.loans.dto.LoanResponseDTO;
+import com.felix.loans.entity.Loan;
+import com.felix.loans.exception.LoanAlreadyExistsException;
+import com.felix.loans.exception.ResourceNotFoundException;
+import com.felix.loans.mapper.LoanMapper;
+import com.felix.loans.repository.LoanRepository;
+import com.felix.loans.service.iLoanService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class LoanServiceImpl implements iLoanService {
+
+  private LoanRepository loanRepository;
+  private LoanMapper loanMapper;
+
+  @Override
+  public void createLoan(LoanRequestDTO loanRequestDTO) {
+    if (loanRepository.findByLoanNumber(loanRequestDTO.getLoanNumber()).isPresent()) {
+      throw new LoanAlreadyExistsException("Loan with number : " + loanRequestDTO.getLoanNumber() + " already exists");
+    }
+
+    Loan loan = new Loan();
+    loan.setLoanNumber(loanRequestDTO.getLoanNumber());
+    loan.setLoanType(loanRequestDTO.getLoanType());
+    loan.setTotalLoan(loanRequestDTO.getTotalLoan());
+    loan.setAmountPaid(loanRequestDTO.getAmountPaid());
+    loan.setMobileNumber(loanRequestDTO.getMobileNumber());
+    loan.setOutstandingAmount(loanRequestDTO.getOutstandingAmount());
+
+    loanRepository.save(loan);
+  }
+
+  @Override
+  public LoanResponseDTO getLoanByMobileNumber(String mobileNumber) {
+    Loan loan = loanRepository.findByMobileNumber(mobileNumber).orElseThrow(
+      () -> new ResourceNotFoundException("Loan", "mobile number", mobileNumber)
+    );
+
+    return loanMapper.mapEntityToResponse(loan);
+  }
+
+  @Override
+  public LoanResponseDTO getLoanById(Long id) {
+    Loan loan = loanRepository.findById(id).orElseThrow(
+      () -> new ResourceNotFoundException("Loan", "id", id.toString())
+    );
+
+    return loanMapper.mapEntityToResponse(loan);
+  }
+
+  @Override
+  public void updateLoan(Long id, LoanRequestDTO loanRequestDTO) {
+    Loan loan = loanRepository.findById(id)
+      .map(
+        newLoan -> {
+          newLoan.setLoanType(loanRequestDTO.getLoanType());
+          newLoan.setTotalLoan(loanRequestDTO.getTotalLoan());
+          newLoan.setAmountPaid(loanRequestDTO.getAmountPaid());
+          newLoan.setMobileNumber(loanRequestDTO.getMobileNumber());
+          newLoan.setOutstandingAmount(loanRequestDTO.getOutstandingAmount());
+          return loanRepository.save(newLoan);
+        }
+      )
+      .orElseThrow(
+        () -> new ResourceNotFoundException("Loan", "id", id.toString())
+      );
+  }
+
+  @Override
+  public void deleteLoan(Long loanId) {
+    Loan loan = loanRepository.findById(loanId).orElseThrow(
+      () -> new ResourceNotFoundException("Loan", "id", loanId.toString())
+    );
+
+    loanRepository.delete(loan);
+  }
+}
