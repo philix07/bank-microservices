@@ -5,36 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af2b98c-3943-4507-be94-033fbcdff78c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/audit/AuditAwareImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/controller/CardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/dto/CardRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/dto/CardResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/dto/ResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/entity/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/mapper/CardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/repository/CardRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/ICardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/impl/CardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cards/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/DuplicateMobileNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/DuplicateMobileNumberException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/CardsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/CardsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/dto/LoanResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/entity/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/controller/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/repository/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/repository/CardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/ICardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/ICardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/impl/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/impl/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/repository/LoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +29,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
         <option value="package-info" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -130,15 +115,22 @@
       <recent name="D:\Coding\Spring\Udemy - Microservices\root-project" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.felix.loans.exception" />
       <recent name="com.felix.cards.exception" />
       <recent name="com.felix.cards.dto" />
       <recent name="com.felix.cards.audit" />
       <recent name="com.felix.cards.entity" />
-      <recent name="com.felix.loans.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CardsApplication">
-    <configuration name="CardsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Loan Application">
+    <configuration name="Accounts Application" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.felix.accounts.AccountApplication" />
+      <module name="accounts" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CardsApplication" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.felix.cards.CardsApplication" />
       <module name="cards" />
       <extension name="coverage">
@@ -151,6 +143,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Loan Application" />
+      <item itemvalue="Application.Accounts Application" />
+      <item itemvalue="Application.CardsApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CardsApplication" />

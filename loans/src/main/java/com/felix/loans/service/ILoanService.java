@@ -11,7 +11,7 @@ public interface ILoanService {
 
   LoanResponseDTO getLoanById(Long id);
 
-  void updateLoan(Long id, LoanRequestDTO loanRequestDTO);
+  void updateLoanById(Long id, LoanRequestDTO loanRequestDTO);
 
-  void deleteLoan(Long loanId);
+  void deleteLoanById(Long loanId);
 }

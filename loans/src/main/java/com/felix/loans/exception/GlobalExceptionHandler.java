@@ -96,4 +96,17 @@ public class GlobalExceptionHandler extends RuntimeException {
     return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
   }
 
+  @ExceptionHandler(DuplicateMobileNumberException.class)
+  public ResponseEntity<ErrorResponse> handleDuplicateMobileNumberException(DuplicateMobileNumberException ex, WebRequest request) {
+    ErrorResponse errorResponse = new ErrorResponse(
+      HttpStatus.CONFLICT.value(),
+      LocalDateTime.now(),
+      ex.getClass().getSimpleName(),
+      ex.getMessage(),
+      request.getDescription(false).replace("uri=", "")
+    );
+
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+  }
+
 }

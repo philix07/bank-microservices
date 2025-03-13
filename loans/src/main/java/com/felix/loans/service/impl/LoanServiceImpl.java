@@ -3,6 +3,7 @@ package com.felix.loans.service.impl;
 import com.felix.loans.dto.LoanRequestDTO;
 import com.felix.loans.dto.LoanResponseDTO;
 import com.felix.loans.entity.Loan;
+import com.felix.loans.exception.DuplicateMobileNumberException;
 import com.felix.loans.exception.LoanAlreadyExistsException;
 import com.felix.loans.exception.ResourceNotFoundException;
 import com.felix.loans.mapper.LoanMapper;
@@ -27,7 +28,11 @@ public class LoanServiceImpl implements ILoanService {
     SecureRandom secureRandom = new SecureRandom();
     do {
       randomAccNumber = 100000000000L + (long) (secureRandom.nextDouble() * 900000000000L);
-    } while (loanRepository.findByLoanNumber(String.valueOf(randomAccNumber)).isPresent());
+    } while (loanRepository.existsByLoanNumber(String.valueOf(randomAccNumber)));
+
+    if (loanRepository.existsByMobileNumber(loanRequestDTO.getMobileNumber())) {
+      throw new DuplicateMobileNumberException("Mobile number already registered");
+    }
 
     Loan loan = new Loan();
     loan.setLoanNumber(String.valueOf(randomAccNumber));
@@ -59,7 +64,11 @@ public class LoanServiceImpl implements ILoanService {
   }
 
   @Override
-  public void updateLoan(Long id, LoanRequestDTO loanRequestDTO) {
+  public void updateLoanById(Long id, LoanRequestDTO loanRequestDTO) {
+    if (loanRepository.existsByMobileNumber(loanRequestDTO.getMobileNumber())) {
+      throw new DuplicateMobileNumberException("Mobile number already registered");
+    }
+
     Loan loan = loanRepository.findById(id)
       .map(
         newLoan -> {
@@ -77,11 +86,7 @@ public class LoanServiceImpl implements ILoanService {
   }
 
   @Override
-  public void deleteLoan(Long loanId) {
-    Loan loan = loanRepository.findById(loanId).orElseThrow(
-      () -> new ResourceNotFoundException("Loan", "id", loanId.toString())
-    );
-
-    loanRepository.delete(loan);
+  public void deleteLoanById(Long loanId) {
+    loanRepository.deleteById(loanId);
   }
 }
