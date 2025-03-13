@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af2b98c-3943-4507-be94-033fbcdff78c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/DuplicateMobileNumberException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/DuplicateMobileNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/controller/CardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/repository/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/repository/CardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/ICardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/ICardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/impl/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cards/src/main/java/com/felix/cards/service/impl/CardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/repository/LoanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/ILoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/java/com/felix/loans/service/impl/LoanServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/loans/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cards/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cards/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loans/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loans/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +86,7 @@
     "Application.CardsApplication.executor": "Run",
     "Application.Loan Application.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
