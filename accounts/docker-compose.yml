@@ -32,6 +32,7 @@ services:
           memory: 700m
     networks:
       - mini-bank
+
 networks:
   mini-bank:
     driver: "bridge"

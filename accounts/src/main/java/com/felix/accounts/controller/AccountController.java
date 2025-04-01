@@ -13,7 +13,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +26,19 @@ import org.springframework.web.bind.annotation.*;
   name = "CRUD REST APIs for Account in MyBank",
   description = "CREATE, READ, UPDATE and DELETE 'account' details"
 )
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated
 @RestController
 @RequestMapping(path = "v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
 
-  private IAccountService accountService;
+  // key value can be found in application.yml
+  @Value("${build.version}")
+  private String buildVersion;
+
+  private final Environment environment;
+
+  private final IAccountService accountService;
 
   @Operation(
     summary = "Get Account's Data REST API",
@@ -132,5 +140,49 @@ public class AccountController {
         "Account with id : " + id + " not found"
       ));
     }
+  }
+
+  @Operation(
+    summary = "Get Build information",
+    description = "Get Build information that is deployed into accounts microservice"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("accounts/build-info")
+  ResponseEntity<String> getBuildInfo() {
+    return ResponseEntity.ok(buildVersion);
+  }
+
+  @Operation(
+    summary = "Get java version information",
+    description = "Get java version information that is deployed into accounts microservice"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("accounts/java-version")
+  ResponseEntity<String> getJavaVersion() {
+    return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
   }
 }
