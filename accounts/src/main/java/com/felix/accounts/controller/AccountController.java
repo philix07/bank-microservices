@@ -2,6 +2,7 @@ package com.felix.accounts.controller;
 
 import com.felix.accounts.dto.AccountRequestDTO;
 import com.felix.accounts.dto.AccountResponseDTO;
+import com.felix.accounts.dto.AccountsContactInfoDTO;
 import com.felix.accounts.dto.ResponseDTO;
 import com.felix.accounts.exception.general.ErrorResponse;
 import com.felix.accounts.service.IAccountService;
@@ -36,9 +37,13 @@ public class AccountController {
   @Value("${build.version}")
   private String buildVersion;
 
+  private final IAccountService accountService;
+
+  // environment to get environment variable's configuration
   private final Environment environment;
 
-  private final IAccountService accountService;
+  // AccountsContactInfoDTO to get configuration value created using @ConfigurationProperties feature
+  private final AccountsContactInfoDTO accountsContactInfoDTO;
 
   @Operation(
     summary = "Get Account's Data REST API",
@@ -184,5 +189,27 @@ public class AccountController {
   @GetMapping("accounts/java-version")
   ResponseEntity<String> getJavaVersion() {
     return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
+  }
+
+  @Operation(
+    summary = "Get contact info",
+    description = "Contact info that can be reached out in case of any issue"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("accounts/contact-info")
+  ResponseEntity<AccountsContactInfoDTO> getContactInfo() {
+    return ResponseEntity.ok(accountsContactInfoDTO);
   }
 }
