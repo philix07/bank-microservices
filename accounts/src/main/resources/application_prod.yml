@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to accounts related prod APIs "
+  contactDetails:
+    name: "Felix - Product Owner"
+    email: "felix@gmail.com"
+  onCallSupport:
+    - (62) 123-4567
+    - (62) 987-6543
