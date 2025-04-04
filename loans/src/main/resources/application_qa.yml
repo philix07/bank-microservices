@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.0"
+
+cards:
+  message: "Welcome to loans related QA APIs "
+  contactDetails:
+    name: "Liando Loans - QA Lead"
+    email: "liando_loans@gmail.com"
+  onCallSupport:
+    - (62) 123-4567
+    - (62) 987-6543

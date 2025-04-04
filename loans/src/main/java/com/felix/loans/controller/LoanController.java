@@ -2,6 +2,7 @@ package com.felix.loans.controller;
 
 import com.felix.loans.dto.LoanRequestDTO;
 import com.felix.loans.dto.LoanResponseDTO;
+import com.felix.loans.dto.LoansContactInfoDTO;
 import com.felix.loans.dto.ResponseDTO;
 import com.felix.loans.exception.ErrorResponse;
 import com.felix.loans.service.ILoanService;
@@ -13,6 +14,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +27,17 @@ import org.springframework.web.bind.annotation.*;
   name = "CRUD REST APIs for Loan in MyBank",
   description = "CREATE, READ, UPDATE and DELETE 'loan' details"
 )
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LoanController {
 
-  private ILoanService loanService;
+  @Value("${build.version}")
+  private String buildVersion;
+
+  private final ILoanService loanService;
+  private final Environment environment;
+  private final LoansContactInfoDTO loansContactInfoDTO;
 
   @Operation(
     summary = "Get Loan by Mobile Number REST API",
@@ -158,5 +167,72 @@ public class LoanController {
       200,
       "Loan data with id : " + id + " successfully deleted"
     ));
+  }
+
+
+  @Operation(
+    summary = "Get Build information",
+    description = "Get Build information that is deployed into loans microservice"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("loans/build-info")
+  ResponseEntity<String> getBuildInfo() {
+    return ResponseEntity.ok(buildVersion);
+  }
+
+  @Operation(
+    summary = "Get java version information",
+    description = "Get java version information that is deployed into loans microservice"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("loans/java-version")
+  ResponseEntity<String> getJavaVersion() {
+    return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
+  }
+
+  @Operation(
+    summary = "Get contact info",
+    description = "Contact info that can be reached out in case of any issue"
+  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error",
+      content = @Content(
+        schema = @Schema(implementation = ErrorResponse.class)
+      )
+    )
+  })
+  @GetMapping("loans/contact-info")
+  ResponseEntity<LoansContactInfoDTO> getContactInfo() {
+    return ResponseEntity.ok(loansContactInfoDTO);
   }
 }

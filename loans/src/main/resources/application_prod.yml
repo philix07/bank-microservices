@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+cards:
+  message: "Welcome to loans related prod APIs "
+  contactDetails:
+    name: "Felix Loans - Product Owner"
+    email: "felix_loans@gmail.com"
+  onCallSupport:
+    - (62) 123-4567
+    - (62) 987-6543
