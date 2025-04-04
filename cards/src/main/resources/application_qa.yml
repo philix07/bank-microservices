@@ -6,11 +6,11 @@ spring:
 build:
   version: "2.0"
 
-accounts:
-  message: "Welcome to accounts related QA APIs "
+cards:
+  message: "Welcome to cards related QA APIs "
   contactDetails:
-    name: "Liando - QA Lead"
-    email: "liando@gmail.com"
+    name: "Liando Cards - QA Lead"
+    email: "liando_cards@gmail.com"
   onCallSupport:
     - (62) 123-4567
     - (62) 987-6543
