@@ -187,7 +187,7 @@ public class LoanController {
       )
     )
   })
-  @GetMapping("loans/build-info")
+  @GetMapping("build-info")
   ResponseEntity<String> getBuildInfo() {
     return ResponseEntity.ok(buildVersion);
   }
@@ -209,7 +209,7 @@ public class LoanController {
       )
     )
   })
-  @GetMapping("loans/java-version")
+  @GetMapping("java-version")
   ResponseEntity<String> getJavaVersion() {
     return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
   }
@@ -231,7 +231,7 @@ public class LoanController {
       )
     )
   })
-  @GetMapping("loans/contact-info")
+  @GetMapping("contact-info")
   ResponseEntity<LoansContactInfoDTO> getContactInfo() {
     return ResponseEntity.ok(loansContactInfoDTO);
   }

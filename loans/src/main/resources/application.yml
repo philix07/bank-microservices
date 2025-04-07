@@ -1,6 +1,10 @@
 server:
   port: 8090
 spring:
+  application:
+    name: "loans"
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -15,22 +19,10 @@ spring:
       ddl-auto: update
     show-sql: true
   config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-  profiles:
-    active:
-      - "qa"
-
-build:
-  version: "3.0"
-
-# define custom properties
-cards:
-  message: "Welcome to loans related local APIs"
-  contactDetails:
-    name: "Felix Loans"
-    email: "felix.loans@gmail.com"
-  onCallSupport:
-    - (62) 853-4723-5452
-    - (62) 813-4505-9162
+    # "configserver" is fixed prefix which tells Spring Boot to use Spring Cloud Config Server
+    # it doesn't have anything to do with the class name or whatsoever.
+    # "optional" keyword is to indicate that if it's not able to connect with the configserver,
+    # it can still continue to start the microservices application. If we have a scenario where
+    # the properties is very important to our microservices and without them, our microservices
+    # is not going to work, then we're not supposed to use the "optional" keyword
+    import: "optional:configserver:http://localhost:8071/"

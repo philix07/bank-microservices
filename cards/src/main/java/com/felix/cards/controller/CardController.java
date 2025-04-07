@@ -189,7 +189,7 @@ public class CardController {
       )
     )
   })
-  @GetMapping("cards/build-info")
+  @GetMapping("build-info")
   ResponseEntity<String> getBuildInfo() {
     return ResponseEntity.ok(buildVersion);
   }
@@ -211,7 +211,7 @@ public class CardController {
       )
     )
   })
-  @GetMapping("cards/java-version")
+  @GetMapping("java-version")
   ResponseEntity<String> getJavaVersion() {
     return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
   }
@@ -233,7 +233,7 @@ public class CardController {
       )
     )
   })
-  @GetMapping("cards/contact-info")
+  @GetMapping("contact-info")
   ResponseEntity<CardsContactInfoDTO> getContactInfo() {
     return ResponseEntity.ok(cardsContactInfoDTO);
   }

@@ -1,0 +1,12 @@
+build:
+  version: "3.0"
+
+# define custom properties
+cards:
+  message: "Welcome to loans related local APIs"
+  contactDetails:
+    name: "Felix Loans"
+    email: "felix.loans@gmail.com"
+  onCallSupport:
+    - (62) 853-4723-5452
+    - (62) 813-4505-9162

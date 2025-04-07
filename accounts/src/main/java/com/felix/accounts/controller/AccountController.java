@@ -164,7 +164,7 @@ public class AccountController {
       )
     )
   })
-  @GetMapping("accounts/build-info")
+  @GetMapping("build-info")
   ResponseEntity<String> getBuildInfo() {
     return ResponseEntity.ok(buildVersion);
   }
@@ -186,7 +186,7 @@ public class AccountController {
       )
     )
   })
-  @GetMapping("accounts/java-version")
+  @GetMapping("java-version")
   ResponseEntity<String> getJavaVersion() {
     return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
   }
@@ -208,7 +208,7 @@ public class AccountController {
       )
     )
   })
-  @GetMapping("accounts/contact-info")
+  @GetMapping("contact-info")
   ResponseEntity<AccountsContactInfoDTO> getContactInfo() {
     return ResponseEntity.ok(accountsContactInfoDTO);
   }
