@@ -27,3 +27,15 @@ spring:
     # the properties is very important to our microservices and without them, our microservices
     # is not going to work, then we're not supposed to use the "optional" keyword
     import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

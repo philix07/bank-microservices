@@ -1,5 +1,7 @@
 package com.felix.accounts.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
@@ -7,5 +9,12 @@ import java.util.Map;
 
 
 @ConfigurationProperties(prefix = "accounts")
-public record AccountsContactInfoDTO(String message, Map<String, String> contactDetails, List<String> onCallSupport) {
+@Getter
+@Setter
+public class AccountsContactInfoDTO {
+
+  String message;
+  Map<String, String> contactDetails;
+  List<String> onCallSupport;
+
 }
