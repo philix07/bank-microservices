@@ -14,8 +14,9 @@ services:
       retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
       interval: 10s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
-    networks:
-      - mini-bank
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
   
   # we must make sure that "configserver" is ready before running
   # accounts, cards and loans microservices.
@@ -42,12 +43,9 @@ services:
       retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
       interval: 10s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - mini-bank
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
 
 
   accounts:
@@ -59,15 +57,9 @@ services:
     depends_on:
       configserver:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - mini-bank
-    environment:
-      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
-      SPRING_PROFILES_ACTIVE: default
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
 
 
   cards:
@@ -79,15 +71,9 @@ services:
     depends_on:
       configserver:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - mini-bank
-    environment:
-      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
-      SPRING_PROFILES_ACTIVE: default
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
 
 
   loans:
@@ -99,15 +85,9 @@ services:
     depends_on:
       configserver:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    networks:
-      - mini-bank
-    environment:
-      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
-      SPRING_PROFILES_ACTIVE: default
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
 
 
 networks:
