@@ -1,0 +1,75 @@
+services:
+  # we must make sure that "configserver" is ready before the other ms
+  # is accessing it, because they depends on "configserver"
+  configserver:
+    image: "felixl07/configserver:mini-bank"
+    container_name: configserver-ms
+    ports:
+      - "8071:8071"
+    healthcheck:
+      # --fail
+      #   Tells curl to fail silently on server errors (like HTTP 500, 404).
+      #   It won’t output the HTML error page — it just returns a non-zero exit code.
+      # --silent
+      #   Suppresses all the progress/output text.
+      #   Makes the command quiet — you’ll only see the response body (if any).
+      # grep UP
+      #   If UP is found, the command succeeds (exit code 0).
+      #   If UP is not found, it fails (exit code 1).
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - mini-bank
+  accounts:
+    image: "felixl07/accounts:mini-bank"
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - mini-bank
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
+      SPRING_PROFILES_ACTIVE: default
+  cards:
+    image: "felixl07/cards:mini-bank"
+    container_name: cards-ms
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - mini-bank
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
+      SPRING_PROFILES_ACTIVE: default
+  loans:
+    image: "felixl07/loans:mini-bank"
+    container_name: loans-ms
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - mini-bank
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
+      SPRING_PROFILES_ACTIVE: default
+
+networks:
+  mini-bank:
+    driver: "bridge"
