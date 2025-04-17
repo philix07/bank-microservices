@@ -1,11 +1,32 @@
 services:
-  # we must make sure that "configserver" is ready before the other ms
-  # is accessing it, because they depends on "configserver"
+
+  # rabbitmq must start properly before other service is started,
+  # because all service is depending on rabbitmq
+  rabbit-mq:
+    image: rabbitmq:management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      start_period: 5s    # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
+    networks:
+      - mini-bank
+  
+  # we must make sure that "configserver" is ready before running
+  # accounts, cards and loans microservices.
   configserver:
     image: "felixl07/configserver:mini-bank"
     container_name: configserver-ms
     ports:
       - "8071:8071"
+    depends_on:
+      rabbit-mq:
+        condition: service_healthy
     healthcheck:
       # --fail
       #   Tells curl to fail silently on server errors (like HTTP 500, 404).
@@ -27,11 +48,17 @@ services:
           memory: 700m
     networks:
       - mini-bank
+
+
   accounts:
     image: "felixl07/accounts:mini-bank"
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    # accounts service will start only when configserver's service condition is health
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -41,11 +68,17 @@ services:
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
       SPRING_PROFILES_ACTIVE: default
+
+
   cards:
     image: "felixl07/cards:mini-bank"
     container_name: cards-ms
     ports:
       - "8090:8090"
+    # cards service will start only when configserver's service condition is health
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -55,11 +88,17 @@ services:
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
       SPRING_PROFILES_ACTIVE: default
+
+
   loans:
     image: "felixl07/loans:mini-bank"
     container_name: loans-ms
     ports:
       - "9000:9000"
+    # loans service will start only when configserver's service condition is health
+    depends_on:
+      configserver:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -69,6 +108,7 @@ services:
     environment:
       SPRING_CONFIG_IMPORT: "configserver:http://localhost:8071/"
       SPRING_PROFILES_ACTIVE: default
+
 
 networks:
   mini-bank:
