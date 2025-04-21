@@ -3,6 +3,20 @@ services:
     networks:
       - mini-bank
 
+  microservice-db-config:
+    extends:
+      service: network-deploy-service
+    image: mysql
+    healthcheck:
+      # tell docker to ping the host
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      start_period: 10s    # initial delay after container starts before health checks begin.
+      timeout: 10s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
+      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
   microservice-base-config:
     extends:
       service: network-deploy-service
@@ -19,3 +33,5 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
