@@ -102,7 +102,7 @@ services:
     image: "felixl07/cards:mini-bank"
     container_name: cards-ms
     ports:
-      - "8090:8090"
+      - "9000:9000"
     environment:
       SPRING_APPLICATION_NAME: "cards"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -122,7 +122,7 @@ services:
     image: "felixl07/loans:mini-bank"
     container_name: loans-ms
     ports:
-      - "9000:9000"
+      - "8090:8090"
     environment:
       SPRING_APPLICATION_NAME: "loans"
       # we're accessing this url in outside network so we're using the internal docker port
