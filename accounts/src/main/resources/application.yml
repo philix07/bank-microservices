@@ -34,4 +34,39 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    shutdown:
+      access: unrestricted
+  # enabling environment related information
+  info:
+    env:
+      enabled: true
+
+endpoints:
+  shutdown:
+    access: unrestricted
+
+eureka:
+  instance:
+    preferIpAddress: true # Use IP address instead of hostname for registration
+  client:
+    # "fetchRegistry" and "registerWithEureka" are typically set to true
+    # when the application is a client of Eureka server.
+    # Download the list of services from Eureka
+    # (i.e., it's Eureka client that wants to discover other services).
+    fetchRegistry: true
+    # Register this service with Eureka
+    # (i.e., making itself discoverable).
+    registerWithEureka: true
+    # Specifies the URL where Eureka clients would normally
+    # connect to register or fetch services.
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+# metadata displayed on the Eureka dashboard
+info:
+  app:
+    name: "accounts"
+    description: "Mini Bank Accounts Application"
+    version: "1.0.0"
 
