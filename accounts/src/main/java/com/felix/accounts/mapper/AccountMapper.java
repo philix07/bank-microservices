@@ -4,7 +4,9 @@ package com.felix.accounts.mapper;
 import com.felix.accounts.dto.AccountResponseDTO;
 import com.felix.accounts.entity.Account;
 import com.felix.accounts.entity.Customer;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountMapper {
 
   public AccountResponseDTO mapEntityToResponse(Account account, Customer customer) {

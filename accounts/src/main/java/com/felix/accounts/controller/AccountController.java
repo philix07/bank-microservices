@@ -100,10 +100,16 @@ public class AccountController {
     summary = "Update Account's Data REST API",
     description = "REST API to update existing Customer & Account data"
   )
-  @ApiResponse(
-    responseCode = "200",
-    description = "HttpStatus : Ok"
-  )
+  @ApiResponses({
+    @ApiResponse(
+      responseCode = "200",
+      description = "HttpStatus : Ok"
+    ),
+    @ApiResponse(
+      responseCode = "500",
+      description = "HttpStatus : Internal Server Error"
+    )
+  })
   @PatchMapping("accounts/{id}")
   ResponseEntity<ResponseDTO> updateAccountById(@PathVariable Long id, @Valid @RequestBody AccountRequestDTO accountRequestDTO) {
     accountService.updateAccount(id, accountRequestDTO);
