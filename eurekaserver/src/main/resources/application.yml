@@ -1,1 +1,27 @@
-spring.application.name=eurekaserver
+spring:
+  application:
+    name: "eurekaserver"
+  config:
+    # "configserver" is fixed prefix which tells Spring Boot to use Spring Cloud Config Server
+    # it doesn't have anything to do with the class name or whatsoever.
+    # "optional" keyword is to indicate that if it's not able to connect with the configserver,
+    # it can still continue to start the microservices application. If we have a scenario where
+    # the properties is very important to our microservices and without them, our microservices
+    # is not going to work, then we're not supposed to use the "optional" keyword
+    import: "optional:configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  # enable details information about "readiness-state" and "liveness-state"
+  health:
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
