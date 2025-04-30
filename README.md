@@ -17,8 +17,9 @@ understand and practice microservices architecture.
 The main goal of this project is to explore:
 
 - How microservices interact with each other
-- Centralized configuration management
-- Service registry and service discovery
+- Centralized configuration management (Spring Cloud Config)
+- Service registry and service discovery (Eureka)
+- Understanding how load balancing works (OpenFeign via Spring Cloud Load Balancer)
 - Building and structuring services in a microservices architecture
 
 This repository is public so that others can also reference or learn from it, but please remember:  
