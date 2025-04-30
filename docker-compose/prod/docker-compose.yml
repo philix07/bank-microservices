@@ -29,7 +29,6 @@ services:
       file: common-config.yml
       service: microservice-db-config
 
-
   # rabbitmq must start properly before other service is started,
   # because all service is depending on rabbitmq
   rabbit-mq:
@@ -47,7 +46,7 @@ services:
     extends:
       file: common-config.yml
       service: network-deploy-service
-  
+
   # we must make sure that "configserver" is ready before running
   # accounts, cards and loans microservices.
   configserver:
@@ -77,6 +76,34 @@ services:
       file: common-config.yml
       service: microservice-base-config
 
+  eurekaserver:
+    image: "felixl07/eurekaserver:mini-bank"
+    container_name: eurekaserver-ms
+    ports:
+      - "8070:8070"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    healthcheck:
+      # --fail
+      #   Tells curl to fail silently on server errors (like HTTP 500, 404).
+      #   It won’t output the HTML error page — it just returns a non-zero exit code.
+      # --silent
+      #   Suppresses all the progress/output text.
+      #   Makes the command quiet — you’ll only see the response body (if any).
+      # grep UP
+      #   If UP is found, the command succeeds (exit code 0).
+      #   If UP is not found, it fails (exit code 1).
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
     image: "felixl07/accounts:mini-bank"
@@ -87,11 +114,13 @@ services:
       SPRING_APPLICATION_NAME: "accounts"
       # we're accessing this url in outside network so we're using the internal docker port
       SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
-    # accounts service will start only when configserver's service condition is health
+    # accounts service will start only when configserver's and accountsdb's service condition is health
     depends_on:
       accountsdb:
         condition: service_healthy
       configserver:
+        condition: service_healthy
+      eurekaserver:
         condition: service_healthy
     extends:
       file: common-config.yml
@@ -113,6 +142,8 @@ services:
         condition: service_healthy
       configserver:
         condition: service_healthy
+      eurekaserver:
+        condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-configserver-config
@@ -132,6 +163,8 @@ services:
       loansdb:
         condition: service_healthy
       configserver:
+        condition: service_healthy
+      eurekaserver:
         condition: service_healthy
     extends:
       file: common-config.yml
