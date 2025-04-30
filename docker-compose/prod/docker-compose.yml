@@ -1,6 +1,6 @@
 services:
   accountsdb:
-    container_name: accountsdb
+    container_name: accountsdb-docker-compose
     ports:
       - 3307:3306
     environment:
@@ -10,7 +10,7 @@ services:
       service: microservice-db-config
 
   cardsdb:
-    container_name: cardsdb
+    container_name: cardsdb-docker-compose
     ports:
       - 3309:3306
     environment:
@@ -20,7 +20,7 @@ services:
       service: microservice-db-config
 
   loansdb:
-    container_name: loansdb
+    container_name: loansdb-docker-compose
     ports:
       - 3308:3306
     environment:
@@ -101,7 +101,7 @@ services:
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     extends:
       file: common-config.yml
-      service: microservice-base-config
+      service: microservice-configserver-config
     environment:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
@@ -124,7 +124,7 @@ services:
         condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
 
   cards:
@@ -146,7 +146,7 @@ services:
         condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
 
   loans:
@@ -168,7 +168,7 @@ services:
         condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
 
 networks:
