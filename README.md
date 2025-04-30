@@ -18,6 +18,7 @@ The main goal of this project is to explore:
 
 - How microservices interact with each other
 - Centralized configuration management
+- Service registry and service discovery
 - Building and structuring services in a microservices architecture
 
 This repository is public so that others can also reference or learn from it, but please remember:  
