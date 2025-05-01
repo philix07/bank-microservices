@@ -1,1 +1,45 @@
-spring.application.name=gatewayserver
+spring:
+  application:
+    name: gatewayserver
+  config:
+    # "configserver" is fixed prefix which tells Spring Boot to use Spring Cloud Config Server
+    # it doesn't have anything to do with the class name or whatsoever.
+    # "optional" keyword is to indicate that if it's not able to connect with the configserver,
+    # it can still continue to start the microservices application. If we have a scenario where
+    # the properties is very important to our microservices and without them, our microservices
+    # is not going to work, then we're not supposed to use the "optional" keyword
+    import: "optional:configserver:http://localhost:8071/"
+  # This turns on Discovery Locator.
+  # If it's true
+  # Gateway will auto-register routes for each microservice that registers itself with Eureka Server.
+  # By doing this we don't need to manually define each route in application.yml
+  # If it's false
+  # We're disabling the auto routing provided by discovery locator, instead we're
+  # using the one we have customized in the application (manually define each route)
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
+  # enabling environment related information
+  info:
+    env:
+      enabled: true
+
+# metadata displayed on the Eureka dashboard
+info:
+  app:
+    name: "gatewayserver"
+    description: "Mini Bank Gateway Server Application"
+    version: "1.0.0"
+
