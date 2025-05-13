@@ -170,6 +170,23 @@ services:
       file: common-config.yml
       service: microservice-eurekaserver-config
 
+  gatewayserver:
+    image: "felixl07/gatewayserver:mini-bank"
+    container_name: gatewayserver-ms
+    ports:
+      - "8072:8072"
+    environment:
+      SPRING_APPLICATION_NAME: "gatewayserver"
+    depends_on:
+      accounts:
+        condition: service_healthy
+      cards:
+        condition: service_healthy
+      loans:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-eurekaserver-config
 
 networks:
   mini-bank:

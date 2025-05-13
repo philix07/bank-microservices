@@ -110,6 +110,12 @@ services:
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "accounts"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -132,6 +138,12 @@ services:
     container_name: cards-ms
     ports:
       - "9000:9000"
+    healthcheck:
+      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "cards"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -149,11 +161,17 @@ services:
       service: microservice-eurekaserver-config
 
 
-  loans1:
+  loans:
     image: "felixl07/loans:mini-bank"
-    container_name: loans-ms1
+    container_name: loans-ms
     ports:
       - "8090:8090"
+    healthcheck:
+      test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "loans"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -170,22 +188,19 @@ services:
       file: common-config.yml
       service: microservice-eurekaserver-config
 
-  loans2:
-    image: "felixl07/loans:mini-bank"
-    container_name: loans-ms2
+  gatewayserver:
+    image: "felixl07/gatewayserver:mini-bank"
+    container_name: gatewayserver-ms
     ports:
-      - "8091:8090"
+      - "8072:8072"
     environment:
-      SPRING_APPLICATION_NAME: "loans"
-      # we're accessing this url in outside network so we're using the internal docker port
-      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
-    # loans service will start only when configserver's service condition is health
+      SPRING_APPLICATION_NAME: "gatewayserver"
     depends_on:
-      loansdb:
+      accounts:
         condition: service_healthy
-      configserver:
+      cards:
         condition: service_healthy
-      eurekaserver:
+      loans:
         condition: service_healthy
     extends:
       file: common-config.yml
