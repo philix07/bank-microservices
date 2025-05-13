@@ -15,6 +15,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -41,6 +43,8 @@ public class CardController {
 
   private final CardsContactInfoDTO cardsContactInfoDTO;
 
+  private static final Logger logger = LoggerFactory.getLogger(CardController.class);
+
   @Operation(
     summary = "Get Card by Mobile Number REST API",
     description = "REST API to fetch Card data by using customer's mobile number"
@@ -59,7 +63,11 @@ public class CardController {
     )
   })
   @GetMapping("cards")
-  public ResponseEntity<CardResponseDTO> getCardByMobileNumber(@RequestParam String mobileNumber) {
+  public ResponseEntity<CardResponseDTO> getCardByMobileNumber(
+    @RequestHeader("minibank-correlation-id") String correlationId,
+    @RequestParam String mobileNumber
+  ) {
+    logger.debug("minibank-correlation-id found: {}", correlationId);
     return ResponseEntity.ok(cardService.getCardByMobileNumber(mobileNumber));
   }
 
