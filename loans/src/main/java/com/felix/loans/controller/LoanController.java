@@ -15,6 +15,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,8 @@ public class LoanController {
   private final Environment environment;
   private final LoansContactInfoDTO loansContactInfoDTO;
 
+  private static final Logger logger = LoggerFactory.getLogger(LoanController.class);
+
   @Operation(
     summary = "Get Loan by Mobile Number REST API",
     description = "REST API to fetch Loan data by using customer's mobile number"
@@ -57,7 +61,11 @@ public class LoanController {
     )
   })
   @GetMapping("loans")
-  public ResponseEntity<LoanResponseDTO> getLoanByMobileNumber(@RequestParam String mobileNumber) {
+  public ResponseEntity<LoanResponseDTO> getLoanByMobileNumber(
+    @RequestHeader("minibank-correlation-id") String correlationId,
+    @RequestParam String mobileNumber
+  ) {
+    logger.debug("minibank-correlation-id found: {}", correlationId);
     return ResponseEntity.ok(loanService.getLoanByMobileNumber(mobileNumber));
   }
 
