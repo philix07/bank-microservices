@@ -4,6 +4,6 @@ import com.felix.accounts.dto.CustomerDetailsDTO;
 
 public interface ICustomerService {
 
-  CustomerDetailsDTO fetchCustomerDetails(String mobileNumber);
+  CustomerDetailsDTO fetchCustomerDetails(String mobileNumber, String correlationId);
 
 }

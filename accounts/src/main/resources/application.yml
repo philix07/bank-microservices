@@ -34,9 +34,18 @@ management:
     web:
       exposure:
         include: "*"
+  # enable details information about "readiness-state" and "liveness-state"
+  health:
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
   endpoint:
     shutdown:
       access: unrestricted
+    health:
+      probes:
+        enabled: true
   # enabling environment related information
   info:
     env:
@@ -69,4 +78,10 @@ info:
     name: "accounts"
     description: "Mini Bank Accounts Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      felix:
+        accounts: DEBUG
 
