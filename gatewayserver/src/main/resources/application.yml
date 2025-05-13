@@ -43,3 +43,8 @@ info:
     description: "Mini Bank Gateway Server Application"
     version: "1.0.0"
 
+logging:
+  level:
+    com:
+      felix:
+        gatewayserver: DEBUG
