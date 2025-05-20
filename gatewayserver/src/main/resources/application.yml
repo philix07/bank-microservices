@@ -9,19 +9,29 @@ spring:
     # the properties is very important to our microservices and without them, our microservices
     # is not going to work, then we're not supposed to use the "optional" keyword
     import: "optional:configserver:http://localhost:8071/"
-  # This turns on Discovery Locator.
-  # If it's true
-  # Gateway will auto-register routes for each microservice that registers itself with Eureka Server.
-  # By doing this we don't need to manually define each route in application.yml
-  # If it's false
-  # We're disabling the auto routing provided by discovery locator, instead we're
-  # using the one we have customized in the application (manually define each route)
   cloud:
     gateway:
+      # This turns on Discovery Locator.
+      # If it's true
+      # Gateway will auto-register routes for each microservice that registers itself with Eureka Server.
+      # By doing this we don't need to manually define each route in application.yml
+      # If it's false
+      # We're disabling the auto routing provided by discovery locator, instead we're
+      # using the one we have customized in the application (manually define each route)
       discovery:
         locator:
           enabled: false
           lowerCaseServiceId: true
+      # This is used to create HTTP Timeout Pattern
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 2s
+  data:
+    redis:
+      connect-timeout: 2s   # The amount of time the app will wait to connect to the Redis server before giving up. If Redis is down or unresponsive, it fails after 2 seconds.
+      host: localhost       # The address of the Redis server. localhost means it's running on the same machine as the application.
+      port: 6379            # Default Redis port
+      timeout: 1s           # The max time to wait for a Redis operation (like GET or SET) to finish. If Redis takes longer than 1 second to respond, it times out.
 
 management:
   endpoints:
@@ -48,3 +58,12 @@ logging:
     com:
       felix:
         gatewayserver: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10                       # This sets the size of the sliding window, which tracks the outcomes of the last 10 calls (success/failure).
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50                    # If 50% or more of the calls in the sliding window fail, the circuit breaker will open (i.e., stop allowing calls to pass through).
+      waitDurationInOpenState: 10000              # This is the time (in milliseconds) the circuit remains open before switching to half-open. During the open state, all requests are immediately rejected.
+
