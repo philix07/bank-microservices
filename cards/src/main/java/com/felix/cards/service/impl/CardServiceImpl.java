@@ -15,7 +15,7 @@ import java.security.SecureRandom;
 
 @Service
 @AllArgsConstructor
-public class CardService implements ICardService {
+public class CardServiceImpl implements ICardService {
 
   CardRepository cardRepository;
   CardMapper cardMapper;

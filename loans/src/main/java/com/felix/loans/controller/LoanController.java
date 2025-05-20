@@ -241,6 +241,7 @@ public class LoanController {
   })
   @GetMapping("contact-info")
   ResponseEntity<LoansContactInfoDTO> getContactInfo() {
+    logger.debug("Invoked Loans contact-info API");
     return ResponseEntity.ok(loansContactInfoDTO);
   }
 }

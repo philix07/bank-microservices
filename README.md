@@ -20,6 +20,8 @@ The main goal of this project is to explore:
 - Centralized configuration management (Spring Cloud Config)
 - Service registry and service discovery (Eureka)
 - Understanding how load balancing works (OpenFeign via Spring Cloud Load Balancer)
+- Understanding how Spring Gateway works (Spring Cloud Gateway)
+- Understanding how to make microservices resilience (Resilience4j)
 - Building and structuring services in a microservices architecture
 
 This repository is public so that others can also reference or learn from it, but please remember:  
