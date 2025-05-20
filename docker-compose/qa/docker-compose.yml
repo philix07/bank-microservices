@@ -29,6 +29,18 @@ services:
       file: common-config.yml
       service: microservice-db-config
 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      timeout: 10s
+      retries: 10
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
   # rabbitmq must start properly before other service is started,
   # because all service is depending on rabbitmq
   rabbit-mq:
@@ -110,6 +122,12 @@ services:
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "accounts"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -132,6 +150,12 @@ services:
     container_name: cards-ms
     ports:
       - "9000:9000"
+    healthcheck:
+      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "cards"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -154,6 +178,12 @@ services:
     container_name: loans-ms
     ports:
       - "8090:8090"
+    healthcheck:
+      test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
+      start_period: 10s   # initial delay after container starts before health checks begin.
+      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 10s       # docker will run the health check every 10 seconds.
+      timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "loans"
       # we're accessing this url in outside network so we're using the internal docker port
@@ -177,6 +207,10 @@ services:
       - "8072:8072"
     environment:
       SPRING_APPLICATION_NAME: "gatewayserver"
+      SPRING_DATA_REDIS_CONNECT-TIMEOUT: 2s
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_TIMEOUT: 1s
     depends_on:
       accounts:
         condition: service_healthy
@@ -184,9 +218,12 @@ services:
         condition: service_healthy
       loans:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-eurekaserver-config
+
 
 networks:
   mini-bank:
