@@ -23,6 +23,10 @@ spring:
     # the properties is very important to our microservices and without them, our microservices
     # is not going to work, then we're not supposed to use the "optional" keyword
     import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
   rabbitmq:
     host: "localhost"
     port: 5672
@@ -85,3 +89,31 @@ logging:
       felix:
         accounts: DEBUG
 
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 5                        # This sets the size of the sliding window, which tracks the outcomes of the last 10 calls (success/failure).
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50                    # If 50% or more of the calls in the sliding window fail, the circuit breaker will open (i.e., stop allowing calls to pass through).
+      waitDurationInOpenState: 10000              # This is the time (in milliseconds) the circuit remains open before switching to half-open. During the open state, all requests are immediately rejected.
+
+resilience4j.retry:
+  configs:
+    default:
+      maxAttempts: 3
+      waitDuration: 500
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      ignoreExceptions:
+        - java.lang.NullPointerException
+      # by providing retryExceptions property, we ensure that the retry will only happened
+      # to the specified exception and the rest of the exception will be ignored.
+      retryExceptions:
+        - java.util.concurrent.TimeoutException
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      timeoutDuration: 1000     # The maximum amount of time (in milliseconds) a request will wait for permission to proceed. (In this case: 1 second. If permission isn't granted in 1 second, the request fails immediately (usually with an error like HTTP 429).)
+      limitRefreshPeriod: 5000  # How often the rate limiter resets its count of allowed requests. (In this case: every 5 seconds, the allowed request limit is refreshed.)
+      limitForPeriod: 1         # The number of allowed requests per refresh period. (In this case: only 1 request is allowed every 5 seconds.)

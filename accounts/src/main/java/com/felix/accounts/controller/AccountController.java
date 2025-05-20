@@ -6,6 +6,8 @@ import com.felix.accounts.dto.AccountsContactInfoDTO;
 import com.felix.accounts.dto.ResponseDTO;
 import com.felix.accounts.exception.general.ErrorResponse;
 import com.felix.accounts.service.IAccountService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,6 +17,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -44,6 +48,8 @@ public class AccountController {
 
   // AccountsContactInfoDTO to get configuration value created using @ConfigurationProperties feature
   private final AccountsContactInfoDTO accountsContactInfoDTO;
+
+  private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
   @Operation(
     summary = "Get Account's Data REST API",
@@ -170,9 +176,20 @@ public class AccountController {
       )
     )
   })
+  @Retry(name = "getBuildInfo", fallbackMethod = "getBuildInfoFallback")
   @GetMapping("build-info")
   ResponseEntity<String> getBuildInfo() {
-    return ResponseEntity.ok(buildVersion);
+    logger.debug("getBuildInfo() method Invoked");
+    throw new NullPointerException();
+//    return ResponseEntity.ok(buildVersion);
+  }
+
+  // the fallback function should have parameter of Throwable in addition to existing parameter from the referenced one
+  // This is for learning purpose so it's simple, in real case scenario it might trigger
+  // some complex logic operation depending on the business logic
+  ResponseEntity<String> getBuildInfoFallback(Throwable throwable) {
+    logger.debug("getBuildInfoFallback() method Invoked");
+    return ResponseEntity.ok("0.001");
   }
 
   @Operation(
@@ -192,9 +209,17 @@ public class AccountController {
       )
     )
   })
+  @RateLimiter(name = "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
   @GetMapping("java-version")
   ResponseEntity<String> getJavaVersion() {
     return ResponseEntity.ok(environment.getProperty("JAVA_HOME"));
+  }
+
+  // the fallback function should have parameter of Throwable in addition to existing parameter from the referenced one
+  // This is for learning purpose so it's simple, in real case scenario it might trigger
+  // some complex logic operation depending on the business logic
+  ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+    return ResponseEntity.ok("Java 17");
   }
 
   @Operation(
@@ -218,4 +243,5 @@ public class AccountController {
   ResponseEntity<AccountsContactInfoDTO> getContactInfo() {
     return ResponseEntity.ok(accountsContactInfoDTO);
   }
+
 }
