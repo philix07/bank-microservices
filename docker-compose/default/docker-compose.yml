@@ -220,8 +220,8 @@ services:
         condition: service_healthy
       loans:
         condition: service_healthy
-      redis:
-        condition: service_healthy
+    #      redis:
+    #        condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-eurekaserver-config
@@ -237,7 +237,7 @@ services:
       - "7946"
       - "9095"
     volumes:
-      - ..observability/loki/loki-config.yaml:/etc/loki/config.yaml
+      - ../observability/loki/loki-config.yaml:/etc/loki/config.yaml
     depends_on:
       - minio
     healthcheck:
@@ -258,7 +258,7 @@ services:
       - "7946"
       - "9095"
     volumes:
-      - ..observability/loki/loki-config.yaml:/etc/loki/config.yaml
+      - ../observability/loki/loki-config.yaml:/etc/loki/config.yaml
     healthcheck:
       test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1" ]
       interval: 10s
@@ -272,7 +272,7 @@ services:
   alloy:
     image: grafana/alloy:latest
     volumes:
-      - .observability/alloy/alloy-local-config.yaml:/etc/alloy/config.alloy:ro
+      - ../observability/alloy/alloy-local-config.yaml:/etc/alloy/config.alloy:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
     ports:
@@ -350,7 +350,7 @@ services:
   backend:
     image: grafana/loki:latest
     volumes:
-      - ./loki-config.yaml:/etc/loki/config.yaml
+      - ../observability/loki/loki-config.yaml:/etc/loki/config.yaml
     ports:
       - "3100"
       - "7946"
