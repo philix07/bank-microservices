@@ -22,8 +22,10 @@ The main goal of this project is to explore:
 - Understanding how load balancing works (OpenFeign via Spring Cloud Load Balancer)
 - Understanding how gateway works (Spring Cloud Gateway)
 - Understanding how to make microservices resilience (Resilience4j)
-- Understanding how to observe and monitor microservices condition by creating centralized logging (Grafana, Loki &
+- Understanding how to observe microservices by creating centralized logging (Grafana, Loki &
   Alloy)
+- Understanding how to monitor microservice metrics and sending alerts (Grafana, Micrometer & Prometheus)
+- Understanding how to implement Distributed Tracing (Grafana, OpenTelemetry & Tempo)
 - Building and structuring services in a microservices architecture
 
 This repository is public so that others can also reference or learn from it, but please remember:  

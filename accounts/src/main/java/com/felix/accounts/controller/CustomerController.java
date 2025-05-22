@@ -46,8 +46,10 @@ public class CustomerController {
     @RequestHeader("minibank-correlation-id") String correlationId,
     @PathVariable String mobileNumber
   ) {
-    logger.debug("minibank-correlation-id found: {}", correlationId);
-    return ResponseEntity.ok(customerService.fetchCustomerDetails(mobileNumber, correlationId));
+    logger.debug("fetchCustomerDetails method start");
+    CustomerDetailsDTO customerDetailsDTO = customerService.fetchCustomerDetails(mobileNumber, correlationId);
+    logger.debug("fetchCustomerDetails method end");
+    return ResponseEntity.ok(customerDetailsDTO);
   }
 
 }

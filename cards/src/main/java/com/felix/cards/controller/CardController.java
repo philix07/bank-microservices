@@ -67,8 +67,10 @@ public class CardController {
     @RequestHeader("minibank-correlation-id") String correlationId,
     @RequestParam String mobileNumber
   ) {
-    logger.debug("minibank-correlation-id found: {}", correlationId);
-    return ResponseEntity.ok(cardService.getCardByMobileNumber(mobileNumber));
+    logger.debug("getCardByMobileNumber method start");
+    CardResponseDTO cardResponseDTO = cardService.getCardByMobileNumber(mobileNumber);
+    logger.debug("getCardByMobileNumber method end");
+    return ResponseEntity.ok(cardResponseDTO);
   }
 
   @Operation(

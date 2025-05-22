@@ -65,8 +65,10 @@ public class LoanController {
     @RequestHeader("minibank-correlation-id") String correlationId,
     @RequestParam String mobileNumber
   ) {
-    logger.debug("minibank-correlation-id found: {}", correlationId);
-    return ResponseEntity.ok(loanService.getLoanByMobileNumber(mobileNumber));
+    logger.debug("getLoanByMobileNumber method start");
+    LoanResponseDTO loanResponseDTO = loanService.getLoanByMobileNumber(mobileNumber);
+    logger.debug("getLoanByMobileNumber method end");
+    return ResponseEntity.ok(loanResponseDTO);
   }
 
   @Operation(
