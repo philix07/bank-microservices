@@ -28,3 +28,8 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+logging:
+  pattern:
+    # this is custom pattern for OpenTelemetry (otel)
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"

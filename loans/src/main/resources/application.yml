@@ -52,7 +52,7 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-      
+
 endpoints:
   shutdown:
     access: unrestricted
@@ -86,3 +86,6 @@ logging:
     com:
       felix:
         loans: DEBUG
+  pattern:
+    # this is custom pattern for OpenTelemetry (otel)
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
