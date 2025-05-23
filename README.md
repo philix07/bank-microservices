@@ -26,6 +26,7 @@ The main goal of this project is to explore:
   Alloy)
 - Understanding how to monitor microservice metrics and sending alerts (Grafana, Micrometer & Prometheus)
 - Understanding how to implement Distributed Tracing (Grafana, OpenTelemetry & Tempo)
+- Understanding how to implement Authentication and Authorization (Open ID Connect & OAuth2)
 - Building and structuring services in a microservices architecture
 
 This repository is public so that others can also reference or learn from it, but please remember:  
