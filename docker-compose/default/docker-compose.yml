@@ -54,8 +54,8 @@ services:
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
       start_period: 5s    # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     extends:
       file: common-config.yml
@@ -86,8 +86,8 @@ services:
       #   If UP is not found, it fails (exit code 1).
       test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
       start_period: 10s   # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     extends:
       file: common-config.yml
@@ -115,8 +115,8 @@ services:
       #   If UP is not found, it fails (exit code 1).
       test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
       start_period: 10s   # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     extends:
       file: common-config.yml
@@ -133,8 +133,8 @@ services:
     healthcheck:
       test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
       start_period: 10s   # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "accounts"
@@ -161,8 +161,8 @@ services:
     healthcheck:
       test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
       start_period: 10s   # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "cards"
@@ -189,8 +189,8 @@ services:
     healthcheck:
       test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
       start_period: 10s   # initial delay after container starts before health checks begin.
-      retries: 10         # how many consecutive failures docker tolerates before marking the container as unhealthy
-      interval: 10s       # docker will run the health check every 10 seconds.
+      retries: 20         # how many consecutive failures docker tolerates before marking the container as unhealthy
+      interval: 20s       # docker will run the health check every 10 seconds.
       timeout: 5s         # if the health check takes longer than 5 seconds, it’s treated as a failure.
     environment:
       SPRING_APPLICATION_NAME: "loans"
