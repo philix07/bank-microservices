@@ -32,6 +32,14 @@ spring:
       host: localhost       # The address of the Redis server. localhost means it's running on the same machine as the application.
       port: 6379            # Default Redis port
       timeout: 1s           # The max time to wait for a Redis operation (like GET or SET) to finish. If Redis takes longer than 1 second to respond, it times out.
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Resource Server will download the public certificate during the start up.
+          # Using this public certificate, the resource server can validate if the given access token
+          # is really being issued by the Keycloak server (it's valid or not)
+          jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
 
 management:
   endpoints:

@@ -34,40 +34,49 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!-- Exposes health, metrics, and other endpoints to monitor the application. -->
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry.javaagent</groupId>
+            <!-- Automatically instruments your app to send traces (for distributed tracing) to observability tools. -->
             <artifactId>opentelemetry-javaagent</artifactId>
             <version>${otelVersion}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
+            <!-- Exports metrics collected by Micrometer to Prometheus for monitoring. -->
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <!-- Connects your app to a Spring Cloud Config Server, so you can manage all configs in one place. -->
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <!-- Enables your app to be an API Gateway, routing requests to other services. -->
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <!-- Registers your service with Eureka Discovery Server, so other services can find it. -->
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <!-- Helps your service stay stable by automatically handling failures and retries using Resilience4j. -->
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!-- Allows your app to use Redis in a reactive (non-blocking) way, often for caching or rate-limiting. -->
             <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!--  Brings in Spring Security, the base framework to secure your application (auth, roles, etc). -->
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
@@ -77,7 +86,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
-            <!-- Since we are using JWT Token, we require this dependency -->
+            <!-- jose (JavaScript Object Signing and Encryption) is the part that decodes and validates JWT token. -->
             <artifactId>spring-security-oauth2-jose</artifactId>
         </dependency>
 
