@@ -27,6 +27,7 @@ spring:
         connect-timeout: 1000
         response-timeout: 30s
   data:
+    # Rate Limiter property
     redis:
       connect-timeout: 2s   # The amount of time the app will wait to connect to the Redis server before giving up. If Redis is down or unresponsive, it fails after 2 seconds.
       host: localhost       # The address of the Redis server. localhost means it's running on the same machine as the application.
