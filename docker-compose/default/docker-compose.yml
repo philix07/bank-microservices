@@ -140,6 +140,7 @@ services:
       SPRING_APPLICATION_NAME: "accounts"
       # we're accessing this url in outside network so we're using the internal docker port
       SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+      SPRING_RABBITMQ_HOST: "rabbitmq"
       OTEL_SERVICE_NAME: "accounts"
     depends_on:
       accountsdb:
@@ -147,6 +148,8 @@ services:
       configserver:
         condition: service_healthy
       eurekaserver:
+        condition: service_healthy
+      rabbit-mq:
         condition: service_healthy
     extends:
       file: common-config.yml
@@ -207,6 +210,18 @@ services:
     extends:
       file: common-config.yml
       service: microservice-eurekaserver-config
+
+  message:
+    image: "felixl07/message:mini-bank"
+    container_name: message-ms
+    depends_on:
+      rabbit-mq:
+        condition: service_healthy
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbitmq"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
 
   gatewayserver:
     image: "felixl07/gatewayserver:mini-bank"
