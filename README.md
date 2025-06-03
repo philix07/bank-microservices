@@ -17,8 +17,8 @@ understand and practice microservices architecture.
 The main goal of this project is to explore:
 
 - How microservices interact with each other
-- Centralized configuration management (Spring Cloud Config)
-- Service registry and service discovery (Eureka)
+- Creating centralized configuration management (Spring Cloud Config)
+- Managing service registry and service discovery (Eureka)
 - Understanding how load balancing works (OpenFeign via Spring Cloud Load Balancer)
 - Understanding how gateway works (Spring Cloud Gateway)
 - Understanding how to make microservices resilience (Resilience4j)
@@ -27,7 +27,8 @@ The main goal of this project is to explore:
 - Understanding how to monitor microservice metrics and sending alerts (Grafana, Micrometer & Prometheus)
 - Understanding how to implement Distributed Tracing (Grafana, OpenTelemetry & Tempo)
 - Understanding how to implement Authentication and Authorization (OpenID Connect, OAuth2 & Keycloak)
-- Building and structuring services in a microservices architecture
+- Understanding Event-driven microservices using Pub/Sub Model (RabbitMQ)
+- Understanding Event-driven microservices using Event Streaming Model (Apache Kafka)
 
 This repository is public so that others can also reference or learn from it, but please remember:  
 **It's not designed for real-world deployment.**
