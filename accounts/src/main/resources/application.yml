@@ -4,17 +4,24 @@ server:
 spring:
   application:
     name: accounts
+
   profiles:
     active: "prod"
+
   datasource:
     url: jdbc:mysql://localhost:3307/accountsdb
     username: root
     password: root
+
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
+
   sql:
     init:
       mode: always
+
   config:
     # "configserver" is fixed prefix which tells Spring Boot to use Spring Cloud Config Server
     # it doesn't have anything to do with the class name or whatsoever.
@@ -23,10 +30,26 @@ spring:
     # the properties is very important to our microservices and without them, our microservices
     # is not going to work, then we're not supposed to use the "optional" keyword
     import: "optional:configserver:http://localhost:8071/"
+
   cloud:
     openfeign:
       circuitbreaker:
         enabled: true
+    function:
+      definition: updateCommunication
+      # in the scenario where we have multiple independent functions, we can separate them by using semicolumn
+      # like "definition: func1;func2;func3"
+    stream:
+      bindings:
+        updateCommunication-in-0:
+          # 'destination' here is the same as 'queue name' because its using Input binding type
+          destination: communication-sent
+          group: ${spring.application.name}
+        sendCommunication-out-0:
+          # 'destination' here is the same as 'exchange name' because its using Output binding type
+          destination: send-communication
+
+
   rabbitmq:
     host: "localhost"
     port: 5672

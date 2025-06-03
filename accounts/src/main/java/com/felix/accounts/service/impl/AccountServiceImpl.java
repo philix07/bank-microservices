@@ -2,6 +2,7 @@ package com.felix.accounts.service.impl;
 
 import com.felix.accounts.dto.AccountRequestDTO;
 import com.felix.accounts.dto.AccountResponseDTO;
+import com.felix.accounts.dto.AccountMsgDTO;
 import com.felix.accounts.entity.Account;
 import com.felix.accounts.entity.Customer;
 import com.felix.accounts.exception.DuplicateCustomerIDException;
@@ -11,6 +12,9 @@ import com.felix.accounts.repository.CustomerRepository;
 import com.felix.accounts.service.IAccountService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -21,6 +25,10 @@ public class AccountServiceImpl implements IAccountService {
 
   private AccountRepository accountRepository;
   private CustomerRepository customerRepository;
+  private final StreamBridge streamBridge;
+
+  private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
+
 
   @Override
   public void createAccounts(AccountRequestDTO accountRequestDTO) {
@@ -47,8 +55,22 @@ public class AccountServiceImpl implements IAccountService {
     account.setAccountNumber(randomAccNumber);
     account.setAccountType(accountRequestDTO.getAccountType());
     account.setBranchAddress(accountRequestDTO.getBranchAddress());
-    accountRepository.save(account);
+    Account savedAccount = accountRepository.save(account);
 
+    sendCommunication(savedAccount, savedCustomer);
+  }
+
+  private void sendCommunication(Account account, Customer customer) {
+    var accountMsgDTO = new AccountMsgDTO(
+      account.getAccountNumber(),
+      customer.getName(),
+      customer.getEmail(),
+      customer.getMobileNumber()
+    );
+
+    log.info("Sending Communication request for the details: {}", accountMsgDTO);
+    var result = streamBridge.send("sendCommunication-out-0", accountMsgDTO);
+    log.info("Is the Communication request successfully triggered ? : {}", result);
   }
 
   @Override
@@ -131,6 +153,24 @@ public class AccountServiceImpl implements IAccountService {
       return true;
     }
     return false;
+  }
+
+  @Override
+  public boolean updateCommunicationStatus(Long accountNumber) {
+    boolean isUpdated = false;
+
+    if (accountNumber != null) {
+      Account accounts = accountRepository.findById(accountNumber)
+        .orElseThrow(
+          () -> new ResourceNotFoundException("Account", "AccountNumber", accountNumber.toString())
+        );
+
+      accounts.setCommunicationSw(true);
+      accountRepository.save(accounts);
+      isUpdated = true;
+    }
+    
+    return isUpdated;
   }
 
 }

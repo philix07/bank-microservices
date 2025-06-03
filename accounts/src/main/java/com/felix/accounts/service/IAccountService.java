@@ -14,4 +14,6 @@ public interface IAccountService {
   void updateAccount(Long id, AccountRequestDTO accountRequestDTO);
 
   boolean deleteAccount(Long customerId);
+
+  boolean updateCommunicationStatus(Long accountNumber);
 }
