@@ -1,1 +1,30 @@
-spring.application.name=Microservice to support Message in Minibank
+server:
+  port: 9010
+
+spring:
+  application:
+    name: "message"
+  cloud:
+    function:
+      # email|sms means we're combining email and sms function into a single logical unit (single function)
+      # it's not limited to only 2 functions, we can combine as many function as needed.
+      #
+      # To invoke the endpoint:
+      # "http://localhost:port_number/emailsms" the endpoint's name is the combination of two functions name
+      definition: email|sms
+    stream:
+      bindings:
+        # We're trying to bind these input binding, to "message queue" with the name "send-communication.message"
+        emailsms-in-0:
+          # 'destination' here is the same as 'queue name' because its using Input binding type
+          destination: send-communication
+          group: ${spring.application.name}
+        emailsms-out-0:
+          # 'destination' here is the same as 'exchange name' because its using Output binding type
+          destination: communication-sent
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+    connection-timeout: 10s
