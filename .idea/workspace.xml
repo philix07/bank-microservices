@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af2b98c-3943-4507-be94-033fbcdff78c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/functions/AccountFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/java/com/felix/accounts/functions/AccountFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.bloomcycle.bin/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.bloomcycle.bin/xl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.usage-cache.bin.bkp/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.usage-cache.bin.bkp/xl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.usage-cache.bin/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/.usage-cache.bin/xl.meta" afterDir="false" />
@@ -18,6 +17,10 @@
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-data/.usage-cache.bin/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-data/.usage-cache.bin/xl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-ruler/.usage-cache.bin.bkp/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-ruler/.usage-cache.bin.bkp/xl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-ruler/.usage-cache.bin/xl.meta" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/buckets/loki-ruler/.usage-cache.bin/xl.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/default/.data/minio/.minio.sys/tmp/7f95b052-5eb3-49ad-b2bb-d734f24dd468" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/message/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/src/main/java/com/felix/message/functions/MessageFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/message/src/main/java/com/felix/message/functions/MessageFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/message/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,8 +98,8 @@
     "Application.Accounts Application.executor": "Debug",
     "Application.CardsApplication.executor": "Run",
     "Application.ConfigserverApplication.executor": "Run",
-    "Application.Configuration Server.executor": "Run",
-    "Application.Eureka Server.executor": "Run",
+    "Application.Configuration Server.executor": "Debug",
+    "Application.Eureka Server.executor": "Debug",
     "Application.Gateway Server.executor": "Debug",
     "Application.Loan Application.executor": "Run",
     "Application.Messages.executor": "Debug",
@@ -108,7 +111,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Coding/Spring/Udemy - Microservices/bank-microservices/message",
+    "last_opened_file_path": "D:/Coding/Spring/Udemy - Spring Security/spring-security",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -205,12 +208,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.Accounts Application" />
+      <item itemvalue="Application.CardsApplication" />
       <item itemvalue="Application.Configuration Server" />
       <item itemvalue="Application.Eureka Server" />
       <item itemvalue="Application.Gateway Server" />
       <item itemvalue="Application.Loan Application" />
       <item itemvalue="Application.Messages" />
-      <item itemvalue="Application.CardsApplication" />
     </list>
     <recent_temporary>
       <list>

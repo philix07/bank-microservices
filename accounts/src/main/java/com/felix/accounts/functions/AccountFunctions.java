@@ -10,7 +10,6 @@ import java.util.function.Consumer;
 
 @Configuration
 public class AccountFunctions {
-
   private static final Logger log = LoggerFactory.getLogger(AccountFunctions.class);
 
   @Bean
@@ -21,5 +20,5 @@ public class AccountFunctions {
       log.info("Updated communication status for the account number : {}", accountNumber.toString());
     };
   }
-
 }
+

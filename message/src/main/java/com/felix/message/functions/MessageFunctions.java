@@ -41,6 +41,6 @@ public class MessageFunctions {
   // Consumer<T> -> <T> is the type of the input to the operation.
   // Consumer is used when the business logic doesn't require an output or return value.
   //
-  // Supplier<T> -> <T> is the type of results supplied by this supplier.
+  // Supplier<R> -> <R> is the type of results supplied by this supplier.
   // Supplier is used when the business logic doesn't require an input but returns an output.
 }

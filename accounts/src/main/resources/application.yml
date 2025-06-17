@@ -40,6 +40,7 @@ spring:
       # in the scenario where we have multiple independent functions, we can separate them by using semicolumn
       # like "definition: func1;func2;func3"
     stream:
+      default-binder: kafka
       bindings:
         updateCommunication-in-0:
           # 'destination' here is the same as 'queue name' because its using Input binding type
@@ -48,13 +49,16 @@ spring:
         sendCommunication-out-0:
           # 'destination' here is the same as 'exchange name' because its using Output binding type
           destination: send-communication
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
 
-
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
+#  rabbitmq:
+#    host: "localhost"
+#    port: 5672
+#    username: "guest"
+#    password: "guest"
 
 management:
   endpoints:
